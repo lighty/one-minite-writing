@@ -4,18 +4,21 @@ import { Timer } from './Timer';
 import { InputArea } from './InputArea';
 import { BackupArea } from './BackupArea';
 import { Container } from './Container';
-// import { useTimer } from './useTimer';
 
 const App = () => {
+  const period = 60
   const [timerActive, setTimerActive] = useState(false)
-  const [time, setTime] = useState(0)
+  const [time, setTime] = useState(period)
   const [inputText, setInputText] = useState('')
   const [backupText, setBackupText] = useState('')
   const startTimer = () => {
     setTimerActive(true)
-    setTime(60)
+    setTime(period)
   }
-  
+  const stopTimer = () => {
+    setTimerActive(false)
+  }
+
   useEffect(() => {
     if (!timerActive) return;
     const intervalId = setInterval(() => {
@@ -42,7 +45,8 @@ const App = () => {
       <Timer
         timerActive={timerActive}
         time={time}
-        handleClick={startTimer}
+        handleStart={startTimer}
+        handleStop={stopTimer}
       ></Timer>
       <Container>
         <InputArea

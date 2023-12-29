@@ -4,16 +4,17 @@ import styled from 'styled-components'
 type Props = {
   timerActive: boolean
   time: number
-  handleClick: () => void
+  handleStart: () => void
+  handleStop: () => void
 }
 
-export const Timer: React.FC<Props> = ({ timerActive, time, handleClick }) => {
+export const Timer: React.FC<Props> = ({ timerActive, time, handleStart, handleStop }) => {
   return (
     <Div>
-      {timerActive ?
-        time
-        :
-        <a onClick={handleClick}>push start</a>
+      { time }
+      { timerActive
+        ? <button onClick={handleStop}>stop</button>
+        : <button onClick={handleStart}>start</button>
       }
     </Div>
   )
