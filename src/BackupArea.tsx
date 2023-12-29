@@ -15,5 +15,5 @@ export const BackupArea: React.FC<Props> = ({backupText}) =>(
 const Textarea = styled.textarea`
   width: 800px;
   height: 500px;
-  font-size: 24px;
+  font-size: 16px;
 `
