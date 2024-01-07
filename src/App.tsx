@@ -6,14 +6,14 @@ import { BackupArea } from './BackupArea';
 import { Container } from './Container';
 
 const App = () => {
-  const period = 60
+  const initPeriod = 60
   const [timerActive, setTimerActive] = useState(false)
-  const [time, setTime] = useState(period)
+  const [time, setTime] = useState(initPeriod)
   const [inputText, setInputText] = useState('')
   const [backupText, setBackupText] = useState('')
   const startTimer = () => {
     setTimerActive(true)
-    setTime(period)
+    setTime(initPeriod)
   }
   const stopTimer = () => {
     setTimerActive(false)
@@ -44,7 +44,7 @@ const App = () => {
     <>
       <Timer
         timerActive={timerActive}
-        time={time}
+        remainingSeconds={time}
         handleStart={startTimer}
         handleStop={stopTimer}
       ></Timer>
