@@ -4,20 +4,25 @@ import styled from 'styled-components'
 type Props = {
   timerActive: boolean
   remainingSeconds: number
+  showSeparator: boolean
   handleStart: () => void
   handleStop: () => void
 }
 
-const remainingSecondsToClock = (remainingSeconds: number) : string => {
+const remainingSecondsToClock = (remainingSeconds: number, showSeparator: boolean) : string => {
   const minutes = Math.floor(remainingSeconds / 60).toString()
   const seconds = (remainingSeconds % 60).toString().padStart(2, '0')
-  return `${minutes}:${seconds}`
+  return (
+    showSeparator
+      ? `${minutes}:${seconds}`
+      : `${minutes} ${seconds}`
+  )
 }
 
-export const Timer: React.FC<Props> = ({ timerActive, remainingSeconds, handleStart, handleStop }) => {
+export const Timer: React.FC<Props> = ({ timerActive, remainingSeconds, showSeparator, handleStart, handleStop }) => {
   return (
     <Div>
-      { remainingSecondsToClock(remainingSeconds) }
+      { remainingSecondsToClock(remainingSeconds, showSeparator) }
       { timerActive
         ? <button onClick={handleStop}>stop</button>
         : <button onClick={handleStart}>start</button>
