@@ -4,6 +4,7 @@ import { Timer } from './Timer';
 import { InputArea } from './InputArea';
 import { BackupArea } from './BackupArea';
 import { Container } from './Container';
+import { CopyButton } from './CopyButton';
 
 const App = () => {
   const initPeriod = 60
@@ -19,6 +20,10 @@ const App = () => {
   const stopTimer = () => {
     setTimerActive(false)
   }
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(backupText).then(() => alert('クリップボードにコピーしたよ'))
+  }
+
 
   useEffect(() => {
     if (!timerActive) return;
@@ -67,6 +72,9 @@ const App = () => {
           backupText={backupText}
         ></BackupArea>
       </Container>
+      <CopyButton
+        handleCopy={copyToClipboard}
+      ></CopyButton>
     </>
   );
 }
